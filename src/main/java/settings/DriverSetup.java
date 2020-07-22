@@ -2,6 +2,7 @@ package settings;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
@@ -17,9 +18,10 @@ public class DriverSetup {
             if(headless){
                 opciones.addArguments("--headless");
             }
-            elDriver.manage().window().maximize();
-            elDriver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+            elDriver = new ChromeDriver(opciones);
         }
+        elDriver.manage().window().maximize();
+        elDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     public WebDriver getElDriver() {
